@@ -25,7 +25,7 @@ Kongponents is Kong's Vue 3 + TypeScript component library. Package: `@kong/kong
 
 ### Display & Layout
 - **KCard** — Content container with title and helpText
-- **KBadge** — Small label (danger, info, success, warning, custom) with uppercase text-transform
+- **KBadge** — Small label with 7 appearances: info, success, warning, danger, neutral, decorative, new
 - **KAlert** — Contextual alerts (info, success, warning, danger) with dismiss support
 - **KBreadcrumbs** — Navigation path hierarchy
 - **KEmptyState** — Empty state display with icon variants
@@ -173,7 +173,7 @@ Source: `Foundation--Copy` Figma file, node `109:1243`. Detailed token specs fro
 |-------|-----------------|------|-------------------|----|---------------------|----|--------------------|----|
 | `H1` | `font-size-70` | 32px | `line-height-60` | 40px | `letter-spacing-minus-50` | -1.5px | `space-70` | 24px |
 | `H2` | `font-size-60` | 24px | `line-height-50` | 32px | `letter-spacing-minus-40` | -0.75px | `space-60` | 16px |
-| `H3` | `font-size-50` | 20px | `line-height-40` | 28px | `letter-spacing-minus-30` | -0.5px | `space-50` | 12px |
+| `H3` | `font-size-50` | 18px | `line-height-40` | 28px | `letter-spacing-minus-30` | -0.5px | `space-50` | 12px |
 | `H4` | `font-size-40` | 16px | `line-height-30` | 24px | `letter-spacing-minus-20` | -0.32px | `space-40` | 8px |
 | `H5` | `font-size-30` | 14px | `line-height-30` | 24px | `letter-spacing-minus-10` | -0.07px | `space-30` | 4px |
 
@@ -182,15 +182,17 @@ All headings use `font-weight: 700` (bold) and `font-family: Inter`.
 ### Body Text Scale (Inter — 3 sizes × 4 weights)
 | Style | Font-Size Token | Size | Line-Height Token | LH | Regular | Medium | SemiBold | Bold |
 |-------|-----------------|------|-------------------|----|---------|--------|----------|------|
-| `text/large` | `font-size-40` | 16px | `line-height-30` | 24px | 400 | 500 | 600 | 700 |
-| `text/default` | `font-size-30` | 14px | `line-height-20` | 20px | 400 | 500 | 600 | 700 |
+| `text/large` | `font-size-50` | 18px | `line-height-40` | 28px | 400 | 500 | 600 | 700 |
+| `text/default` | `font-size-40` | 16px | `line-height-30` | 24px | 400 | 500 | 600 | 700 |
 | `text/small` | `font-size-20` | 12px | `line-height-20` | 20px | 400 | 500 | 600 | 700 |
 
-**Most common in UI**: `text/default/semibold` (14px/600) for labels, `text/default/regular` (14px/400) for body, `text/small/semibold` (12px/600) for badges/pills.
+> **Corrected from demo:** The v9 demo typography page shows Default = `font-size-40` (16px), Large = `font-size-50` (18px). The previous values (Default=14px, Large=16px) were from an earlier version.
+
+**Most common in UI**: `text/default/semibold` (16px/600) for labels, `text/default/regular` (16px/400) for body, `text/small/semibold` (12px/600) for badges/pills.
 
 ### Text Elements
 - **Anchor (`<a>`)**: `color-text-primary` (#0044f4), underline on hover
-- **Code (`<code>`)**: JetBrains Mono, `font-size-20` (12px), `color-background-neutral-weakest` background, 2px padding, `border-radius-10`
+- **Code (`<code>`)**: JetBrains Mono, `font-size-20` (12px), `color-background-neutral-weakest` background, padding `2px 6px`, `border-radius-20` (4px)
 - **Description List (`<dl>`)**: `<dt>` bold 600, `<dd>` regular 400, vertical gap `space-40` (8px)
 - **Horizontal Rule (`<hr>`)**: 1px solid `color-border`, margin `space-60` (16px) top/bottom
 - **Paragraph (`<p>`)**: `font-size-30` (14px), `line-height-20` (20px), margin-bottom `space-40` (8px)
@@ -202,7 +204,7 @@ All headings use `font-weight: 700` (bold) and `font-family: Inter`.
 |-------|-------|
 | `font-size-70` | 32px |
 | `font-size-60` | 24px |
-| `font-size-50` | 20px |
+| `font-size-50` | 18px |
 | `font-size-40` | 16px |
 | `font-size-30` | 14px |
 | `font-size-20` | 12px |
@@ -224,18 +226,19 @@ All headings use `font-weight: 700` (bold) and `font-family: Inter`.
 Source: `Foundation--Copy` Figma file, node `104:13`. Detailed specs from `Icons` Figma page. Uses **Material Symbols** as base with custom additions. Package: `@kong/icons`.
 
 ### Material Symbols Settings
-- **Style**: Outlined (default), Filled available
+- **Style**: Outlined
 - **Weight**: 400
-- **Grade**: 0
-- **Optical Size**: 20px (matches default component size)
+- **Fill**: Off
+- **Grade**: Normal
+- **Optical Size**: 24dp
 
 ### Icon Variants
 - **Solid** (filled) — primary variant for UI actions and navigation
 - **Stroke** (outlined) — secondary/decorative use, status indicators
 
-### Icon Catalog (~200+ icons in @kong/icons)
+### Icon Catalog (61 curated icons in @kong/icons)
 
-**Core UI Icons (60+):** `AddIcon`, `ArrowDownIcon`, `ArrowLeftIcon`, `ArrowRightIcon`, `ArrowUpIcon`, `BackIcon`, `BookIcon`, `BrainIcon`, `CalendarIcon`, `CheckIcon`, `CheckCircleIcon`, `ChevronDownIcon`, `ChevronLeftIcon`, `ChevronRightIcon`, `ChevronUpIcon`, `ClearIcon`, `ClipboardIcon`, `ClockIcon`, `CloseIcon`, `CloudIcon`, `CloudDownloadIcon`, `CloudUploadIcon`, `CodeIcon`, `CogIcon`, `CollapseIcon`, `CopyIcon`, `DangerIcon`, `DashboardIcon`, `DatabaseIcon`, `DocumentIcon`, `DownloadIcon`, `EditIcon`, `EmailIcon`, `ExpandIcon`, `ExternalLinkIcon`, `FilterIcon`, `FolderIcon`, `FullscreenIcon`, `GridIcon`, `HelpIcon`, `HistoryIcon`, `ImageIcon`, `InfoIcon`, `KeyIcon`, `LinkIcon`, `ListIcon`, `LocationIcon`, `LockIcon`, `MenuIcon`, `MoreIcon`, `NotificationIcon`, `OverviewIcon`, `PeopleIcon`, `PlugIcon`, `ProfileIcon`, `RefreshIcon`, `RemoveIcon`, `SearchIcon`, `SecurityIcon`, `ServicesIcon`, `TableIcon`, `TrashIcon`, `VisibilityIcon`
+**Core UI Icons (61):** `AddIcon`, `AddCircleIcon`, `ArrowDownIcon`, `ArrowLeftIcon`, `ArrowRightIcon`, `ArrowUpIcon`, `BackIcon`, `BarChartIcon`, `BookIcon`, `BotIcon`, `BrainIcon`, `CalendarIcon`, `CheckIcon`, `CheckCircleIcon`, `CheckSmallIcon`, `ChevronDownIcon`, `ChevronLeftIcon`, `ChevronRightIcon`, `ChevronUpIcon`, `ClipboardIcon`, `ClockIcon`, `CloseIcon`, `CloudIcon`, `CogIcon`, `CollapseIcon`, `CopyIcon`, `DangerCircleIcon`, `DashboardIcon`, `DisabledIcon`, `DocumentIcon`, `DocumentListIcon`, `ExpandIcon`, `ExternalLinkIcon`, `FileEmptyIcon`, `FilterIcon`, `FlagIcon`, `GraduationIcon`, `GridIcon`, `HelpIcon`, `ImageIcon`, `IndeterminateSmallIcon`, `InfoIcon`, `InboxIcon`, `ListIcon`, `LockIcon`, `MoreIcon`, `MoreHorizontalIcon`, `NotificationIcon`, `OverviewIcon`, `PanelCloseLeftIcon`, `PeopleIcon`, `PlugIcon`, `ProfileIcon`, `RedoIcon`, `SearchIcon`, `SecurityIcon`, `ServiceDocumentIcon`, `TableIcon`, `TeamIcon`, `TrashIcon`, `WarningIcon`
 
 **Chart & Data Icons:** `AddChartIcon`, `AnalyticsIcon`, `BarChartIcon`, `BarChartHorizontalIcon`, `ChartAreaIcon`, `ChartDataIcon`, `ChartLinesIcon`, `DataObjectIcon`, `DataReportIcon`, `DataUsageIcon`, `InsightsIcon`, `TrendDownIcon`, `TrendUpIcon`
 
@@ -244,20 +247,42 @@ Source: `Foundation--Copy` Figma file, node `104:13`. Detailed specs from `Icons
 ### Flags (32 sample countries)
 Country flag icons for localization: `us`, `gb`, `de`, `fr`, `jp`, `cn`, `kr`, `in`, `br`, `ca`, `au`, `mx`, `it`, `es`, `nl`, `se`, `no`, `dk`, `fi`, `pl`, `pt`, `ch`, `at`, `be`, `ie`, `nz`, `sg`, `hk`, `tw`, `th`, `vn`, `id`
 
-### Third-Party & Misc Icons (47 platforms + 5 gateways)
-Platform/service icons for integrations: AWS, Azure, GCP, GitHub, GitLab, Bitbucket, Docker, Kubernetes, Terraform, Datadog, Splunk, New Relic, PagerDuty, Slack, Jira, Confluence, ServiceNow, Okta, Auth0, Cloudflare, Fastly, Akamai, Vercel, Netlify, Heroku, DigitalOcean, Linode, Vultr, OVH, Hetzner, CircleCI, Jenkins, TravisCI, ArgoCD, Helm, Istio, Envoy, Consul, Vault, Prometheus, Grafana, Elasticsearch, Redis, PostgreSQL, MongoDB, MySQL, Cassandra
+### Third-Party Platform Icons
+Platform/service icons for integrations: Amazon, Anthropic, Auth0, AWS, Azure, Cloudflare, Cohere, Confluent, Cursor, Datadog, DeepSeek, Docker, Elastic, Gemini, GitHub, GitLab, Google, Google Cloud, Grafana, Grok, HashiCorp, Hugging Face, Incident.io, Jira, Kong, Linux, Meta Llama, Microsoft, Microsoft Teams, Mistral, New Relic, Okta, OpenAI, OpsGenie, PagerDuty, Red Hat, Salt Security, ServiceNow, Slack, Snyk, Sonar, Sparkles, Splunk, SwaggerHub, Traceable, Ubuntu, Windows
 
-Gateway icons: Kong Gateway, Kong Mesh, Kong Konnect, Kong Insomnia, Kong Dev Portal
+### Gateway Icons
+Control Plane Group, Dedicated Cloud, Kong Ingress Controller, Self-Managed, Serverless
 
 ### Usage Specs
+
+**Sizing:**
+
+| Context | Size |
+|---------|------|
+| Default icon | 20×20px |
+| Table / card icon | 24×24px |
+| Nav icon | 20×20px |
+| Flag circle | 20×20px |
+| Small (pills, badges, compact UI) | 16×16px |
+
+**Colors:**
+
+| Semantic | Token | Hex |
+|----------|-------|-----|
+| Default | `color-text` | #000933 |
+| Neutral / disabled | `color-text-neutral` | #6c7489 |
+| Primary / interactive | `color-text-primary` | #0044f4 |
+| Danger | `color-text-danger` | #d44324 |
+| Success | `color-text-success` | #007d3a |
+
+**Package & Usage:**
+
 | Property | Value |
 |----------|-------|
-| Default size | 20×20px |
-| Small size | 16×16px (in pills, badges, compact UI) |
-| Large size | 24×24px (in headers, empty states) |
+| Package | `@kong/icons` |
+| Import pattern | `import { AddIcon } from '@kong/icons'` |
+| Vue usage | `<AddIcon :size="20" />` |
 | Color inheritance | `fill="currentColor"` — inherits from parent CSS `color` |
-| Import pattern | `import { IconName } from '@kong/icons'` |
-| Vue usage | `<IconName :size="20" color="var(--color-text-primary)" />` |
 | Alignment | Vertically centered with adjacent text |
 
 ### Full Icon Name List
@@ -426,17 +451,17 @@ Filter pills have two primary states: **unapplied** (applied=False) and **applie
 
 | Sub-state | Background | Border | Text | Extra |
 |-----------|-----------|--------|------|-------|
-| Default | `color-background-neutral-weakest` (#f9fafb) | 1px **dashed** `color-border` (#e0e4ea) | #3a3f51 | Shows: filter name + `ChevronDownIcon` |
-| Hover | same | 1px **dashed** `color-border-primary` (#0044f4) | same | Border color changes to primary |
-| Focus | same | 1px **dashed** `color-border-primary` (#0044f4) | same | `box-shadow: 0 0 0 4px rgba(0,68,244,0.2)` |
+| Default | #fafafa | 1px **dashed** #eaeaea | #3a3f51 | Shows: filter name + `ChevronDownIcon` |
+| Hover | same | 1px **dashed** #0070f3 | same | Border color changes to primary |
+| Focus | same | 1px **dashed** #0070f3 | same | `box-shadow: 0 0 0 4px rgba(0,112,243,0.2)` |
 
 **Applied (applied = True):**
 
 | Sub-state | Background | Border | Text | Extra |
 |-----------|-----------|--------|------|-------|
-| Default | `color-background-primary-weakest` (#eefaff) | 1px **solid** `color-border-primary` (#0044f4) | `color-text-primary` (#0044f4) | Format: "Key: **Value**" + close (×) button |
-| Hover | `color-background-primary-weaker` (#bee2ff) | same | same | Background brightens |
-| Focus | same as default | same | same | `box-shadow: 0 0 0 4px rgba(0,68,244,0.2)` |
+| Default | #e6f7ff | 1px **solid** #0070f3 | #0070f3 | Format: "Key: **Value**" + close (×) button |
+| Hover | #bee2ff | same | same | Background brightens |
+| Focus | same as default | same | same | `box-shadow: 0 0 0 4px rgba(0,112,243,0.2)` |
 
 **Close Button States:**
 
@@ -968,6 +993,9 @@ Ancestors in #6c7489 (medium gray), "Selected" in #000933 (dark navy), separator
 | **Secondary** | `color-background-transparent` | `color-border-primary` | `color-text-primary` | transparent | `#0044f4` | `#0044f4` |
 | **Tertiary** | `color-background-transparent` | `color-border-transparent` | `color-text-primary` | transparent | transparent | `#0044f4` |
 | **Danger** | `color-background-danger` | `color-border-danger` | `color-text-inverse` | `#d60027` | `#d60027` | white |
+| **None** | `color-background-transparent` | none | `color-text` | transparent | none | `#000933` |
+
+> **Note:** The `none` appearance is unstyled — no padding (`0px`), regular weight (`400`), no border, no background. It renders as plain text inheriting the default text color. Use it when the button should look like inline text but retain button semantics.
 
 ---
 
@@ -976,18 +1004,59 @@ Ancestors in #6c7489 (medium gray), "Selected" in #000933 (dark navy), separator
 | Property | Large | Medium (default) | Small |
 |---|---|---|---|
 | Height | 40px | 32px | 22px |
-| Padding top/bottom | `space-30` | `space-20` (6px) | `space-10` |
-| Padding left/right | — | `space-40` (10px) | — |
+| Padding top/bottom | `space-30` (6px) | `space-20` (4px) | `space-10` (2px) |
+| Padding left/right | `space-50` (12px) | `space-40` (8px) | `space-30` (6px) |
 | Border width | `border-width-20` (2px) | `border-width-20` (2px) | `border-width-10` (1px) |
 | Border radius | `border-radius-30` (6px) | `border-radius-30` (6px) | `border-radius-20` (4px) |
 | Font size | `font-size-40` (16px) | `font-size-30` (14px) | `font-size-20` (12px) |
 | Line height | `line-height-40` (24px) | `line-height-30` (20px) | `line-height-20` (16px) |
-| Icon size | — | 20×20px | 16×16px |
+| Icon-to-text gap | 8px | `space-30` (6px) | 4px |
+| Icon size | 20×20px | 20×20px | 16×16px |
 
 **Usage guidance:**
 - **Large** — use sparingly; only when vertical density is less of a problem (e.g. fullscreen modals)
 - **Medium** — default for most actions
 - **Small** — use sparingly; only when needed for vertical density
+
+---
+
+#### States
+
+| State | Background | Border | Text color | Notes |
+|---|---|---|---|---|
+| **Default** | Per appearance | Per appearance | Per appearance | Normal interactive state |
+| **Hover** | Slightly darker/lighter variant | — | — | Subtle background shift |
+| **Focus** | Per appearance | + focus ring (`box-shadow: 0 0 0 4px rgba(0,68,244,0.2)`) | — | Visible focus indicator for a11y |
+| **Disabled** | `color-background-neutral-weaker` (`#e0e4ea`) | transparent (primary) / `#e0e4ea` (secondary) | `color-text-neutral-weak` (`#afb7c5`) | `disabled` attribute; no pointer events |
+| **Loading** | Per appearance (unchanged) | Per appearance | Per appearance | Spinner replaces text/icon; button remains clickable unless also disabled |
+
+> **Disabled tokens (from demo computed styles):**
+> - Disabled Primary: bg `#e0e4ea`, text `#afb7c5`, border transparent
+> - Disabled Secondary: bg transparent, text `#afb7c5`, border `#e0e4ea`
+> - Loading uses a spinner animation overlaid on the button content. The background color stays the same as the button's appearance.
+
+---
+
+### Copy to Clipboard (`KCopy`)
+
+**Description:** A component that displays a text value with a copy-to-clipboard button. Exposes a `copy()` method.
+
+**Two display modes:**
+
+| Mode | Description | Example use |
+|---|---|---|
+| **Hidden input** | Value is displayed as monospace text with a copy icon button to the right. The text is selectable but styled as a read-only field. | API keys, tokens, secrets |
+| **Visible text** | Value is displayed as plain monospace text with a smaller copy icon button. More compact. | Service IDs, short identifiers |
+
+**Typography:** Monospace font (JetBrains Mono or system monospace), regular weight.
+
+**Copy button:** Uses `CopyIcon` from `@kong/icons`, triggers clipboard write on click. Tooltip shows "Copy" on hover, brief "Copied!" confirmation after click.
+
+**Vue usage:**
+```vue
+<KCopy :text="apiKey" />
+<KCopy :text="serviceId" format="hidden" />
+```
 
 ---
 
@@ -1040,6 +1109,35 @@ Ancestors in #6c7489 (medium gray), "Selected" in #000933 (dark navy), separator
 
 ---
 
+### Code Block (`KCodeBlock`)
+
+**Description:** A component for displaying code with syntax highlighting and a copy-to-clipboard button.
+
+**Container Tokens:**
+
+| Property | Token | Value |
+|---|---|---|
+| background-color | — | transparent (inherits) |
+| padding | `space-40` | 8px |
+| border | — | 0px none |
+| border-radius | — | 0px |
+
+**Features:**
+- Syntax highlighting for common languages
+- Copy-to-clipboard button (uses `CopyIcon`)
+- Keyboard shortcut support (e.g. Option+C)
+- Scrollable for long code blocks
+
+**Vue usage:**
+```vue
+<KCodeBlock
+  :code="codeString"
+  language="json"
+/>
+```
+
+---
+
 ### Cards (`KCard`)
 
 **Description:** "A Card is a styled container that groups related content and actions."
@@ -1075,7 +1173,7 @@ Single component (no size or appearance variants). Overflow clips content.
 
 ---
 
-### Date Pickers (`KDatePicker`)
+### Date Pickers (`KDateTimePicker`)
 
 **Description:** "A Date Picker is a clickable element that allows users to select a date or a date range."
 
@@ -1163,8 +1261,10 @@ Single component (no size or appearance variants). Overflow clips content.
 
 | Appearance | Text color token | Text hex | Use case |
 |---|---|---|---|
-| **Default** | `color-text-neutral` | `#6c7489` | All standard menu options |
+| **Default** | `color-text` | `#000933` | All standard menu options |
 | **Danger** | `color-text-danger` | `#d60027` | Destructive or hard-to-reverse actions |
+
+> **Corrected from demo:** Default option text is `#000933` (`color-text`), not `#6c7489`. Verified via computed styles on the live v9 demo.
 
 ---
 
@@ -1172,7 +1272,7 @@ Single component (no size or appearance variants). Overflow clips content.
 
 | State | Background token | BG hex | Text color token | Text hex |
 |---|---|---|---|---|
-| **Default** | `color-background` | white | `color-text-neutral-stronger` | `#3a3f51` |
+| **Default** | `color-background` | white | `color-text` | `#000933` |
 | **Hover** | `color-background-neutral-weakest` | `#f9fafb` | `color-text` | `#000933` |
 | **Focus** | (see note) | — | — | — |
 | **Disabled** | — | — | — | — |
@@ -1384,6 +1484,32 @@ Single component (no size or appearance variants). Overflow clips content.
 
 ---
 
+### Prompt (`KPrompt`)
+
+**Description:** A confirmation/action dialog — a specialized variant of KModal used for binary decisions (confirm/cancel). Shares the same overlay and structural tokens as KModal.
+
+**Structure:** Same Header / Content / Footer structure as KModal, but typically with a shorter message body and two action buttons (Cancel + Confirm/Delete).
+
+**Key differences from KModal:**
+- Content is typically a single confirmation message
+- Footer always has Cancel (secondary) + Action (primary or danger) buttons
+- Used for destructive confirmations (e.g. "Are you sure you want to delete?")
+
+**Vue usage:**
+```vue
+<KPrompt
+  :is-visible="showPrompt"
+  title="Delete Service"
+  message="This action cannot be undone. Are you sure?"
+  action-button-text="Delete"
+  action-button-appearance="danger"
+  @proceed="handleDelete"
+  @canceled="showPrompt = false"
+/>
+```
+
+---
+
 ### Multiselect (`KMultiselect`)
 
 **Description:** A styled multi-select that allows users to choose multiple values from a list. Selected values render as inline badge chips inside the input.
@@ -1422,26 +1548,87 @@ Single component (no size or appearance variants). Overflow clips content.
 
 ---
 
-### Navigation (sidebar nav pattern)
+### Navigation Drawer (`KNavigationDrawer`)
 
-**Description:** The primary sidebar navigation for the Konnect platform. Includes collapsible main sections with sub-navigation, plus organization and locale/region selectors at the bottom.
+**Description:** Primary sidebar navigation for the Konnect platform. Dark navy background with collapsible sections and org/region selectors anchored to the bottom.
 
 **Layout:**
 ```
 ┌──────────────────────┐
-│  [Logo]              │
+│  Overview            │  ← Top-level item
 │  ─────────────────── │
-│  ▼ Section Name      │  ← Main section (expanded)
-│    ┃ Sub Item        │  ← Active sub-item (blue left border)
-│      Sub Item        │
-│  ▶ Section Name      │  ← Main section (collapsed)
+│  CONNECTIVITY        │  ← Section label (uppercase)
+│    API Gateway       │  ← Section item (selected = green text)
+│    Event Gateway     │
+│    AI Gateway        │
+│    Service Mesh      │
+│  APPLICATIONS        │
+│    Catalog           │
+│    Dev Portal        │
 │  ─────────────────── │
-│  [Org Selector ▾]    │  ← Organization KSelect
-│  [Region Selector ▾] │  ← Region/locale KSelect
+│  Identity            │
+│  Organization        │
+│  ─────────────────── │
+│  [Acme Inc. ▾]       │  ← Org selector
+│  [US (North America)]│  ← Region selector
 └──────────────────────┘
 ```
 
-**Nav width:** 240px. Active sub-item uses a left accent border in `color-border-primary` (#0044f4). Sub-navigation appears as an indented list within the parent section.
+**Design Tokens:**
+
+| Token | Value |
+|---|---|
+| `nav-color-background` | #000933 (dark navy) |
+| `nav-color-text` | #bee2ff (light blue) |
+| `nav-color-text-selected` | #00fabe (green) |
+| `nav-color-background-selected` | rgba(255,255,255,0.12) |
+
+**Nav Item Specs:**
+
+| Property | Value |
+|---|---|
+| Width | 240px (items 224px + 8px padding each side) |
+| Item padding | 12px top/bottom, 16px left/right |
+| Icon size | 20×20px |
+| Label font | 14px Inter SemiBold |
+| Section label | 12px Inter Medium, uppercase |
+| Active background | `inset 0 0 0 1px rgba(255,255,255,0.12)` |
+| Divider | `rgba(255,255,255,0.1)` horizontal line |
+
+---
+
+### Tabs (`KTabs`)
+
+**Description:** A tabbed interface for switching between content panels. Each tab is defined with a `hash` and `title`. Supports conditional tab changes via `shouldChangeTab` callback.
+
+**Tab Item Specs:**
+
+| Property | Value |
+|---|---|
+| Font size | 14px |
+| Font weight (inactive) | 600 (SemiBold) |
+| Font weight (active) | 600 (SemiBold) |
+| Text color (active) | `color-text` (#000933) |
+| Text color (inactive) | `color-text-neutral` (#6c7489) |
+| Padding | 6px 12px (inner button), 0px 0px 8px (outer tab) |
+| Active indicator | 2px solid bottom border in purple (#6f28ff) |
+| Inactive indicator | 2px solid transparent bottom border |
+| Height | ~46px (including bottom border) |
+
+**Vue usage:**
+```vue
+<KTabs
+  :tabs="[
+    { hash: '#overview', title: 'Overview' },
+    { hash: '#metrics', title: 'Metrics' },
+    { hash: '#settings', title: 'Settings' }
+  ]"
+>
+  <template #overview>Overview content</template>
+  <template #metrics>Metrics content</template>
+  <template #settings>Settings content</template>
+</KTabs>
+```
 
 ---
 
@@ -1553,28 +1740,25 @@ Single component (no size or appearance variants). Overflow clips content.
 | border-color | `color-border-primary-weak` | #5f9aff |
 | border-radius | `border-radius-30` | 6px |
 | border-width | `border-width-10` | 1px |
-
-**Sizes:**
-
-| Size | Height |
-|---|---|
-| Default | 32px |
-| Large | 40px |
+| font-size | `font-size-20` | 12px |
+| font-weight | `font-weight-semibold` | 600 |
+| height (default) | — | 32px |
+| padding | — | 1px 12px |
 
 **Option States — Unselected:**
 
-| State | Background | Text |
+| State | Background | Text Color |
 |---|---|---|
-| Default | transparent | `color-text-neutral` (#6c7489) |
+| Default | transparent | `color-text-primary` (#0044f4) |
 | Hover | `color-background-neutral-weakest` | `color-text` (#000933) |
 | Focus | + focus ring | — |
 | Disabled | reduced opacity | — |
 
 **Option States — Selected:**
 
-| State | Background | Text |
+| State | Background | Text Color |
 |---|---|---|
-| Selected | `color-background-primary-weakest` (#eefaff) | `color-text-primary` (#0044f4) |
+| Selected | `color-background` (#ffffff) | `color-text-primary` (#0044f4) |
 | Selected Focus | + focus ring | — |
 | Selected Disabled | reduced opacity | — |
 
@@ -1804,6 +1988,54 @@ Single component (no size or appearance variants). Overflow clips content.
 
 ---
 
+### Catalog (`KCatalog` / `KCatalogItem`)
+
+**Description:** A card-based listing component for displaying collections of items (e.g. services, plugins). Items are rendered as cards in a grid layout with search, loading, and empty states.
+
+**Props:**
+
+| Prop | Type | Default | Options |
+|---|---|---|---|
+| `cardSize` | string | `"medium"` | `"small"`, `"medium"`, `"large"` |
+| `fetcher` | function | — | Async data fetcher |
+| `searchInput` | string | — | Enables search functionality |
+
+**Card Sizes:**
+
+| Size | Approximate dimensions |
+|---|---|
+| Small | Compact card grid |
+| Medium | Default card grid |
+| Large | Wider cards, fewer per row |
+
+**KCatalogItem:** Individual clickable item within KCatalog. Wraps KCard with standardized title, description, and optional status badge layout.
+
+| Element | Typography |
+|---|---|
+| Title | Inter SemiBold 600, 14px |
+| Description | Inter Regular 400, 14px, `color-text-neutral` |
+| Status badge | Uses KBadge (e.g. "Active", "Deprecated") |
+
+**Features from demo:**
+- Card size selector (Small / Medium / Large)
+- Status badges on cards (Active, Deprecated)
+- Pagination integration (e.g. "1 to 15 of 25")
+- Search functionality
+
+**Vue usage:**
+```vue
+<KCatalog
+  :fetcher="fetcher"
+  :card-size="cardSize"
+>
+  <template #card-body="{ item }">
+    <p>{{ item.description }}</p>
+  </template>
+</KCatalog>
+```
+
+---
+
 ### Tables (`KTable` / `KTableData` / `KTableView`)
 
 **Structure:** 3 Figma sections — 01. Tables (outer container), 02. Table Header, 03. Table Cell.
@@ -1820,38 +2052,45 @@ Detailed specs from `Tables` Figma page covering loading skeleton, header varian
 
 **02. Loading Skeleton**
 
-Tables display a skeleton loading state while data is being fetched:
+Tables display an animated skeleton loading state while data is being fetched. Skeleton rows mirror the eventual table layout to reduce layout shift:
 - Header row: gray shimmer bars matching column widths
-- Body rows: 5 placeholder rows with pulsing `background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%)`
-- Skeleton cells: rounded rect placeholders (height 12px, random widths 40–80%)
-- Animation: 1.5s infinite shimmer via `background-size: 200%`
+- Body rows: placeholder rows with pulsing animation
+- Skeleton cells: rounded rect placeholders with varying widths
+- Animation: shimmer via `background-size: 200%`, infinite loop
 
 **03. Table Header Cell Variants**
 
 | Variant | Description | Visual |
 |---------|-------------|--------|
-| Default | Plain text label, left-aligned | `Name` |
-| Sortable (none) | Label + sort icon (unfold-more, neutral) | `Name ⇅` |
-| Sortable (asc) | Label + up arrow, primary color | `Name ↑` |
-| Sortable (desc) | Label + down arrow, primary color | `Name ↓` |
+| Text | Plain text label, left-aligned | `Name` |
+| Number | Right-aligned numeric label with `#` prefix | `# Header` |
 | Checkbox | Checkbox for select-all, 16×16 | `☐` |
+| Sortable (asc) | Label + up arrow, primary color, text color switches to `color-text` (#000933) | `Name ↑` |
+| Sortable (desc) | Label + down arrow, primary color, text color switches to `color-text` (#000933) | `Name ↓` |
+| Tooltip | Label with info tooltip icon | `Header ⓘ` |
 
-Header specs: `padding: 12px 16px`, `font-size: 12px`, `font-weight: 600`, `text-transform: uppercase`, `letter-spacing: 0.5px`, `color: color-text-neutral` (#6c7489), `border-bottom: 1px solid color-border`.
+Header specs: `padding: 12px 16px`, `font-size: 14px`, `font-weight: 600` (SemiBold), `color: color-text-neutral` (#6c7489), `height: 52px`, `line-height: 20px`, `border-bottom: 1px solid color-border`.
 
 **04. Table Cell Variants**
 
 | Variant | Description | Example |
 |---------|-------------|---------|
-| Text | Plain text, 14px regular | `my-service` |
-| Text + Badge | Text with inline KBadge | `my-service` `Enabled` |
-| Text + Description | Primary text + muted secondary line | `my-service` / `Main API gateway` |
-| Link | Clickable text in primary-60 | `my-service` (underline on hover) |
-| Badge only | KBadge centered in cell | `HTTP` |
-| Switch/Toggle | KToggle switch for enable/disable | `[●——]` |
-| Actions | Icon buttons (edit, delete, more) | `✏️ 🗑️ ⋯` |
+| Text | Plain text, 14px regular 400 | `my-service` |
+| Bold | Bold text, 14px semibold 600 | `auth-service` |
+| Link | Clickable text in primary color, 14px semibold 600 | `my-service` (underline on hover) |
+| Icon + Text | Icon (20×20) + text with gap | `🔒 Cell icon` |
+| Image + Text | Avatar/image (24×24 circle) + text | `K Cell image` |
+| Number | Right-aligned numeric text, 14px regular 400 | `123456` |
+| Number Bold | Right-aligned numeric, 14px semibold 600 | `123456` |
+| Number Link | Right-aligned clickable number, primary color | `123456` |
+| Multi-line | Primary text (14px semibold) + description (12px neutral) | `Cell title` / `Brief description` |
+| Badge | Inline KBadge | `Tag 1` |
 | Checkbox | Row selection checkbox, 16×16 | `☐` / `☑` |
+| Switch | KToggle switch for enable/disable | `[●——]` |
+| Button | Inline KButton (tertiary appearance) | `Label` |
+| Actions | Overflow menu (KDropdown) with action items | `⋯` |
 
-Cell specs: `padding: 12px 16px`, `font-size: 14px`, `line-height: 20px`, `border-bottom: 1px solid color-border`, `vertical-align: middle`.
+Cell specs: `padding: 0px 16px` (vertically centered), `font-size: 14px`, `line-height: 24px`, `height: 48px`, `color: color-text` (#000933), `border-bottom: 1px solid color-border-neutral-weaker` (#e0e4ea).
 
 **05. Row States**
 
@@ -1872,8 +2111,11 @@ Cell specs: `padding: 12px 16px`, `font-size: 14px`, `line-height: 20px`, `borde
 | inner border-width | `border-width-10` | 1px |
 | cell padding | `space-60` | 16px (left/right) |
 | cell padding-y | `space-50` | 12px (top/bottom) |
-| header font-size | `font-size-20` | 12px |
+| header font-size | `font-size-30` | 14px |
+| header height | — | 52px |
 | cell font-size | `font-size-30` | 14px |
+| cell height | — | 48px |
+| cell line-height | `line-height-40` | 24px |
 | hover bg | `color-background-neutral-weakest` | #f9fafb |
 | selected bg | `color-background-primary-weakest` | #eefaff |
 | sort icon color | `color-text-neutral` | #6c7489 |

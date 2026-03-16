@@ -75,10 +75,10 @@ The palette is organized by scale (Gray, Blue, Green, Red, Purple, Yellow, Aqua)
 The pattern for status colors is consistent: background uses step 10 (weakest), text/icons use step 60. This applies to badges, alerts, method badges, and any status indicator.
 
 ### Typography
-Two fonts: **Inter** for everything, **JetBrains Mono** for code. Headings (H1–H5) use bold weight with negative letter-spacing that gets tighter as size increases. Body text comes in three sizes (large 16px, default 14px, small 12px) × four weights (400–700). The reference has the exact token-to-pixel mappings.
+Two fonts: **Inter** for everything, **JetBrains Mono** for code. Headings (H1–H5) use bold weight with negative letter-spacing that gets tighter as size increases. Body text comes in three sizes: large (18px / `font-size-50`), default (16px / `font-size-40`), small (12px / `font-size-20`) × four weights (400–700). Code elements use 2px 6px padding with 4px border-radius. The reference has the exact token-to-pixel mappings.
 
 ### Buttons (`KButton`, `KCopy`, `KDropdown`)
-Four appearances: **primary** (filled blue), **secondary** (outlined blue), **tertiary** (text-only blue), **danger** (filled red). Three sizes: large (40px), medium (32px, default), small (22px). Font is Inter SemiBold 600. Icon-to-text gap is 6px (`space-30`). `KCopy` is a copy-to-clipboard button. `KDropdown`/`KDropdownMenu` is a button-triggered popover menu — options are 44px tall with 12px/16px padding, danger appearance available for destructive actions.
+Five appearances: **primary** (filled blue), **secondary** (outlined blue), **tertiary** (text-only blue), **danger** (filled red), **none** (unstyled, regular weight 400, no padding — for inline text-like buttons). Three sizes: large (40px, padding 6px 12px), medium (32px default, padding 4px 8px), small (22px, padding 2px 6px). Font is Inter SemiBold 600 (except `none` which is Regular 400). Icon-to-text gap varies: large 8px, medium 6px, small 4px. Disabled state: bg #e0e4ea, text #afb7c5. Loading state: spinner replaces content. `KCopy` is a copy-to-clipboard button with two modes: hidden input (for secrets like API keys) and visible text (for IDs). `KDropdown`/`KDropdownMenu` is a button-triggered popover menu — options are 44px tall with 12px/16px padding, danger appearance available for destructive actions, supports divider separators between groups.
 
 ### Form inputs (`KInput`, `KTextArea`, `KSelect`, `KMultiselect`, `KCheckbox`, `KRadio`, `KFileUpload`, `KLabel`, `KDateTimePicker`)
 All form inputs share the same `shadow-border` inset technique (borders are `box-shadow: inset 0 0 0 1px`, not CSS `border`) and consistent state pattern: Default → Hover → Focus (double inset shadow with blue ring) → Disabled → Error → Error+Focus. Input height is 40px standalone, 68px with label, 92px with label + help text. Labels use SemiBold 600 14px with optional required dot (red, 6×6px) and tooltip icon. Help text is 12px regular in either info (gray) or danger (red) variant.
@@ -106,13 +106,20 @@ Both use `/` separator in `#afb7c5`, ancestor text in `#6c7489`.
 This is one of the most complex patterns. It's a search input (300px fixed) + filter pills + "More filters+" button. Pills have unapplied (dashed border) and applied (solid primary border) states. Clicking a pill opens a popover with operator select (100px) + value input (252px) + Cancel/Apply buttons. The reference has 9 subsections covering every aspect.
 
 ### Tables (`KTable` / `KTableData` / `KTableView`)
-Tables use header cells (sortable with direction states), body cells (text, badge, link, switch, checkbox, actions variants), loading skeletons, and row states (default, hover, selected, disabled, danger). Header text is 12px SemiBold uppercase with 0.5px letter-spacing. Cell text is 14px regular. Both use 12px/16px padding. The reference has full token specs.
+Tables use header cells (6 variants: text, number, checkbox, sort ascending, sort descending, tooltip), body cells (14 variants: text, bold, link, icon+text, image+text, number, number bold, number link, multi-line, badge, checkbox, switch, button, actions), loading skeletons, and row states (default, hover #f9fafb, selected #eefaff). Header text is **14px SemiBold** (not uppercase, no letter-spacing), color `color-text-neutral` (#6c7489), height 52px, padding 12px 16px. Active sort headers switch to `color-text` (#000933). Cell text is 14px regular, line-height 24px, height 48px, padding 0px 16px (vertically centered). Row divider: 1px solid #e0e4ea. The reference has full token specs.
 
-### Navigation (`KTabs`, `KPagination`, `KSegmentedControl`, sidebar pattern)
-- **KTabs**: Tabbed interface with `tabs` array of `{ hash, title }`. Supports `shouldChangeTab` for conditional navigation.
+### Navigation (`KNavigationDrawer`, `KTabs`, `KPagination`, `KSegmentedControl`)
+- **KNavigationDrawer**: Primary sidebar navigation. Dark navy background (#000933), text #bee2ff, selected text #00fabe, selected bg rgba(255,255,255,0.12). Width 240px (items 224px + 8px padding each side). Item padding 12px/16px, icon 20×20px, label 14px SemiBold. Section labels 12px Medium uppercase. Active bg uses inset box-shadow. Org/region selectors anchored to bottom.
+- **KTabs**: Tabbed interface with `tabs` array of `{ hash, title }`. Tab text 14px SemiBold. Active tab: `color-text` (#000933) with 2px solid purple (#6f28ff) bottom border. Inactive: `color-text-neutral` (#6c7489) with transparent border. Supports `shouldChangeTab` for conditional navigation.
 - **KPagination**: Page buttons with active state (primary blue fill), total count display, items-per-page selector. Uses same inset-shadow border pattern.
-- **KSegmentedControl**: Radio-group alternative rendered as unified control bar. Selected option gets primary-weakest blue background. Two sizes: default (32px) and large (40px).
-- **Sidebar nav**: 240px wide, collapsible sections, active sub-item has blue left accent border. Org/region selectors at bottom.
+- **KSegmentedControl**: Radio-group alternative. 12px SemiBold, border-radius 6px. Selected: white bg, primary text (#0044f4). Unselected: transparent bg, primary text. Height 32px default, padding 1px 12px.
+
+### Form Layouts (step-based wizard pattern)
+Three layout types for multi-step configuration flows, each available with or without a step number badge:
+- **Type 1 — Cards + Fields**: Visual card selector (e.g. cloud provider) + dependent form fields below. Cards use inline radio pattern with inset box-shadow borders.
+- **Type 2 — Basic**: Standard stacked full-width fields. Most common layout. Supports expandable disclosure section for advanced settings.
+- **Type 3 — Only Fields**: Minimal field-only layout mixing KInput and KSelect freely.
+Step header: optional 32×32px numbered badge + title (h3 Bold 18px) + description (14px regular). Content container: bg #f9fafb, 1px border #e0e4ea, 6px radius, 24px horizontal / 20px vertical padding. The reference has full token specs for each layout type.
 
 ### Display components (`KEmptyState`, `KSkeleton`, `KCodeBlock`, `KCatalog`)
 - **KEmptyState**: Three hierarchy levels — L1 (primary, no border), L2 (secondary, with border), L3 (granular, minimal). Includes icon/illustration + title + description + CTA.
@@ -135,7 +142,7 @@ Boolean toggle with track + handle. Two sizes: small (44×24px track) and medium
 
 Icons come from two sources — know which to use:
 
-**1. `@kong/icons` package** — 200+ standard icons for common UI needs. Import as PascalCase Vue components:
+**1. `@kong/icons` package** — 61 curated core icons from Material Symbols, plus third-party platform icons, flags, and gateway icons. Import as PascalCase Vue components:
 ```ts
 import { SearchIcon, CloseIcon, ChevronDownIcon } from '@kong/icons'
 ```
@@ -147,8 +154,17 @@ Usage: `<SearchIcon :size="20" color="var(--color-text-neutral)" />`
 | Context | Size | Example |
 |---------|------|---------|
 | Default UI | 20×20px | Navigation, toolbar buttons |
+| Table / card | 24×24px | Table icon cells, card images |
 | Compact (pills, badges) | 16×16px | Filter pill chevrons, badge icons |
-| Large (headers, empty states) | 24×24px | Page headers, KEmptyState |
+
+**Icon colors:**
+| Semantic | Token | Hex |
+|----------|-------|-----|
+| Default | `color-text` | #000933 |
+| Neutral / disabled | `color-text-neutral` | #6c7489 |
+| Primary / interactive | `color-text-primary` | #0044f4 |
+| Danger | `color-text-danger` | #d44324 |
+| Success | `color-text-success` | #007d3a |
 
 **Name mapping gotchas** — Some Figma names don't match the component name. These trip people up:
 | Figma name | Component import | Why it's confusing |
@@ -208,7 +224,7 @@ Sometimes the user just wants to know "what color is the danger badge background
 Before delivering any UI code, verify:
 
 - [ ] All colors use `var(--color-*)` CSS variables (not raw hex)
-- [ ] Spacing values correspond to design tokens (8px = space-40, 12px = space-50, 16px = space-60, 24px = space-70)
+- [ ] Spacing values correspond to design tokens (2px=space-10, 4px=space-20, 6px=space-30, 8px=space-40, 12px=space-50, 16px=space-60, 20px=space-70, 24px=space-80)
 - [ ] Typography uses Inter for UI text, JetBrains Mono for code
 - [ ] Heading sizes and letter-spacing match the token scale (H1=32px/-1.5px through H5=14px/-0.07px)
 - [ ] Interactive elements have hover, focus, and disabled states
