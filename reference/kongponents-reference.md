@@ -261,7 +261,7 @@ Control Plane Group, Dedicated Cloud, Kong Ingress Controller, Self-Managed, Ser
 |---------|------|
 | Default icon | 20×20px |
 | Table / card icon | 24×24px |
-| Nav icon | 20×20px |
+| Nav icon | 20×20px — ALL 11 sidebar nav icons use custom SVGs from `icons/custom-nav/`, NOT from @kong/icons |
 | Flag circle | 20×20px |
 | Small (pills, badges, compact UI) | 16×16px |
 
@@ -1577,30 +1577,40 @@ Single component (no size or appearance variants). Overflow clips content.
 └──────────────────────┘
 ```
 
-**Section labels** use a flex row with the text on the left and a small chevron-down SVG (16×16, opacity 0.6) on the right for collapse/expand.
+**Section labels** use a flex row with the text on the left and a chevron SVG (16×16, from `icons/custom-nav/Icon_section_chevron.svg`) on the right for collapse/expand. Style: 12px Inter Medium (500), uppercase, letter-spacing 0.5px, color #bee2ff, padding 0 16px 8px.
 
-**Selected nav group**: When a nav item is selected, it gets a highlighted background (`nav-color-background-selected`) with an inset border, and its label turns green (`nav-color-text-selected`). If the item has sub-pages, a subnav panel expands below it with a top border divider. The active subnav item has a 4px green left border indicator.
+**Selected nav item (`.is-active`)**: Background `rgba(255,255,255,0.12)`, text/icon color `#00fabe`, box-shadow `rgba(255,255,255,0.12) 0px 0px 0px 1px inset`. Default items have transparent background and `#bee2ff` text/icon color.
+
+**All 11 nav icons are custom SVGs** from `icons/custom-nav/` with `viewBox="0 0 20 20"`. None come from `icons-solid.json`. Always inline the EXACT path data from each file — never simplify or hand-edit paths, as even small changes produce visibly broken icons. All icons use `fill="currentColor"`. The full mapping: Overview → `Icon_overview.svg` (Kong "K" mark, fill-rule="evenodd"), API Gateway → `Icon_apigateway.svg` (overlapping rounded rectangles), Event Gateway → `Icon_eventgateway.svg` (hub-and-spoke nodes), AI Gateway → `Icon_aigateway.svg` (robot with circle eyes, mouth grill, body outline), Service Mesh → `Icon_servicemesh.svg` (three interconnected circles), Catalog → `Icon_catalog.svg` (4-tile grid), Dev Portal → `Icon_devportal.svg` (hexagon with eye), Metering & Billing → `Icon_meteringandbilling.svg` (dollar sign), Observability → `Icon_observability.svg` (3-bar chart), Identity → `Icon_identity.svg` (key), Organization → `Icon_organisation.svg` (people silhouettes).
+
+**Org/Region selectors** at bottom use custom caret icon from `icons/custom-nav/Icon_selector_caret.svg` (up+down arrows, viewBox 0 0 20 20, rendered at 16×16).
 
 **Design Tokens:**
 
 | Token | Value |
 |---|---|
-| `nav-color-background` | #000933 (dark navy) |
+| `nav-color-background` | #000933 (dark navy) — rgb(0, 9, 51) |
 | `nav-color-text` | #bee2ff (light blue) |
 | `nav-color-text-selected` | #00fabe (green) |
 | `nav-color-background-selected` | rgba(255,255,255,0.12) |
+| `nav-color-background-hover` | rgba(255,255,255,0.08) |
 
 **Nav Item Specs:**
 
 | Property | Value |
 |---|---|
-| Width | 240px (items 224px + 8px padding each side) |
-| Item padding | 12px top/bottom, 16px left/right |
-| Icon size | 20×20px |
-| Label font | 14px Inter SemiBold |
-| Section label | 12px Inter Medium, uppercase, with chevron-down icon (16×16, opacity 0.6) |
-| Section chevron path | `M6.175 7.15833L10 10.975L13.825 7.15833L15 8.33333L10 13.3333L5 8.33333L6.175 7.15833Z` (viewBox 0 0 20 20) |
-| Active background | `inset 0 0 0 1px rgba(255,255,255,0.12)` |
+| Drawer width | 240px, padding 0 8px 24px |
+| Item width | 224px |
+| Item height | 48px |
+| Item padding | 12px 16px |
+| Item border-radius | 6px |
+| Item gap (icon to label) | 8px |
+| Item display | flex, align-items: center |
+| Icon size | 20×20px, viewBox 0 0 20 20, fill=currentColor |
+| Label font | 14px Inter SemiBold (600), line-height: normal |
+| Section label | 12px Inter Medium (500), uppercase, letter-spacing 0.5px, color #bee2ff, padding 0 16px 8px |
+| Section chevron | `Icon_section_chevron.svg` — path `M10 12.8334L5 7.83335L6.16667 6.66669L10 10.5L13.8333 6.66669L15 7.83335L10 12.8334Z` (viewBox 0 0 20 20, rendered 16×16) |
+| Active box-shadow | `rgba(255,255,255,0.12) 0px 0px 0px 1px inset` |
 | Subnav active indicator | 4px solid left border in `nav-color-text-selected` (#00fabe) |
 | Divider | `rgba(255,255,255,0.1)` horizontal line |
 
