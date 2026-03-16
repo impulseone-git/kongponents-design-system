@@ -67,7 +67,7 @@ These aren't arbitrary rules — they come from how the Konnect product team act
 
 ## Key patterns to know
 
-These are the patterns the reference covers in detail. The summaries below give you the mental model — consult the reference file for exact token values, state specs, and Vue usage examples.
+These are the patterns that come up most often. The reference file has full details, but here's the mental model:
 
 ### Color system
 The palette is organized by scale (Gray, Blue, Green, Red, Purple, Yellow, Aqua) with steps 10–100. Step 10 is the lightest (used for backgrounds), step 60 is typically the primary action shade, and step 100 is the darkest. Semantic aliases like `color-text-primary` map to specific scale values (Blue 60 = #0044f4).
@@ -77,59 +77,11 @@ The pattern for status colors is consistent: background uses step 10 (weakest), 
 ### Typography
 Two fonts: **Inter** for everything, **JetBrains Mono** for code. Headings (H1–H5) use bold weight with negative letter-spacing that gets tighter as size increases. Body text comes in three sizes (large 16px, default 14px, small 12px) × four weights (400–700). The reference has the exact token-to-pixel mappings.
 
-### Buttons (`KButton`, `KCopy`, `KDropdown`)
-Four appearances: **primary** (filled blue), **secondary** (outlined blue), **tertiary** (text-only blue), **danger** (filled red). Three sizes: large (40px), medium (32px, default), small (22px). Font is Inter SemiBold 600. Icon-to-text gap is 6px (`space-30`). `KCopy` is a copy-to-clipboard button. `KDropdown`/`KDropdownMenu` is a button-triggered popover menu — options are 44px tall with 12px/16px padding, danger appearance available for destructive actions.
-
-### Form inputs (`KInput`, `KTextArea`, `KSelect`, `KMultiselect`, `KCheckbox`, `KRadio`, `KFileUpload`, `KLabel`, `KDateTimePicker`)
-All form inputs share the same `shadow-border` inset technique (borders are `box-shadow: inset 0 0 0 1px`, not CSS `border`) and consistent state pattern: Default → Hover → Focus (double inset shadow with blue ring) → Disabled → Error → Error+Focus. Input height is 40px standalone, 68px with label, 92px with label + help text. Labels use SemiBold 600 14px with optional required dot (red, 6×6px) and tooltip icon. Help text is 12px regular in either info (gray) or danger (red) variant.
-
-Key differences: `KSelect` is single-value dropdown. `KMultiselect` shows selected values as badge chips inside the input. `KCheckbox` uses a 16×16px box with `check-small` icon when checked and `indeterminate-small` for indeterminate. `KRadio` uses the same inset-shadow border. `KFileUpload` has an embedded "Browse" button (tertiary appearance). `KDateTimePicker` opens a calendar popover (242×296px per panel).
-
-### Cards (`KCard`)
-Simple content container — white background, 1px `color-border`, 6px radius, ~20px padding. Title is Bold 700 16px, body text is Regular 400 14px in `color-text-neutral-stronger` (#3a3f51). Header can include small icon-only action buttons. No size or appearance variants — just one style.
-
-### Badges (`KBadge`) and Method Badges
-**KBadge**: Inline label, always 12px SemiBold, single-line with `overflow: clip`. Seven appearances: Info (blue), Success (green), Warning (yellow), Danger (red), Neutral (gray), Decorative (purple), New (gradient with green border). Default size is 24px tall, Small is 20px. Border-radius 4px, gap 8px.
-
-**Method Badge**: Fixed 80px × 24px, ALL CAPS centered text for HTTP verbs. Each method has a specific color: GET=green, POST=blue, PUT=yellow, DELETE=red, PATCH=aqua, OPTIONS=gray, HEAD=inverted (dark bg/light text), CONNECT=purple, TRACE=pink. The reference has exact hex values for each.
-
-### Alerts (`KAlert`)
-Full-width banner with optional icon, title, message, and dismiss button. Five appearances: Info, Success, Warning, Danger, Decorative (purple). Each has a predefined icon that cannot be swapped (e.g., Danger uses `DangerIcon`, not `DangerCircleIcon`). Layout: `flex-direction: row`, `align-items: flex-start`, `padding: 12px`, `gap: 6px`, `border-radius: 6px`. No visible border — background color alone provides context. Background uses step-10, text uses step-60 of the semantic color scale.
-
-### Breadcrumbs (`KBreadcrumbs`)
-Two distinct types — don't mix them up:
-- **Global breadcrumb**: Above the H1 page title. Shows ancestors only (current page = H1 below). Medium weight 500, has home icon on level 1, **always ends with trailing `/`**.
-- **Contextual breadcrumb**: Inside tabbed sections. Includes current page as last crumb (bold dark navy #000933). Bold weight 700, no home icon, **no trailing separator**.
-Both use `/` separator in `#afb7c5`, ancestor text in `#6c7489`.
-
 ### Filter toolbar
 This is one of the most complex patterns. It's a search input (300px fixed) + filter pills + "More filters+" button. Pills have unapplied (dashed border) and applied (solid primary border) states. Clicking a pill opens a popover with operator select (100px) + value input (252px) + Cancel/Apply buttons. The reference has 9 subsections covering every aspect.
 
-### Tables (`KTable` / `KTableData` / `KTableView`)
-Tables use header cells (sortable with direction states), body cells (text, badge, link, switch, checkbox, actions variants), loading skeletons, and row states (default, hover, selected, disabled, danger). Header text is 12px SemiBold uppercase with 0.5px letter-spacing. Cell text is 14px regular. Both use 12px/16px padding. The reference has full token specs.
-
-### Navigation (`KTabs`, `KPagination`, `KSegmentedControl`, sidebar pattern)
-- **KTabs**: Tabbed interface with `tabs` array of `{ hash, title }`. Supports `shouldChangeTab` for conditional navigation.
-- **KPagination**: Page buttons with active state (primary blue fill), total count display, items-per-page selector. Uses same inset-shadow border pattern.
-- **KSegmentedControl**: Radio-group alternative rendered as unified control bar. Selected option gets primary-weakest blue background. Two sizes: default (32px) and large (40px).
-- **Sidebar nav**: 240px wide, collapsible sections, active sub-item has blue left accent border. Org/region selectors at bottom.
-
-### Display components (`KEmptyState`, `KSkeleton`, `KCodeBlock`, `KCatalog`)
-- **KEmptyState**: Three hierarchy levels — L1 (primary, no border), L2 (secondary, with border), L3 (granular, minimal). Includes icon/illustration + title + description + CTA.
-- **KSkeleton**: Animated shimmer placeholders. Types: generic, form, table, card, spinner, fullscreen-kong, fullscreen-generic. Uses gray shimmer animation.
-- **KCodeBlock**: Code display with syntax highlighting and copy button.
-- **KCatalog**/**KCatalogItem**: Card-based listing with small/medium/large card sizes, search, and loading/empty states.
-
-### Modals and overlays (`KModal`, `KPrompt`, `KPopover`, `KSlideout`, `KToast`, `KTooltip`)
-- **KModal**: Full-page overlay dialog. Header (70px) / Content (variable, gray bg `#f9fafb`) / Footer (66px) structure. Border-radius 8px. Use `#content` slot for body.
-- **KPrompt**: Confirmation dialog variant of modal.
-- **KPopover**: Positioned overlay (left/right/top/bottom) triggered by a button. Border-radius 6px, white bg, 1px border.
-- **KSlideout**: Right-edge drawer panel, 768px wide, full viewport height. Same header/content/footer structure as modal.
-- **KToast**: Dark notification banner (440px fixed width), dark bg with white text. Five appearances (info, success, warning, danger, system). Use `useToast()` composable.
-- **KTooltip**: Dark overlay (4px radius, 4px padding, dark bg, white text). **Info Tooltip** (`KInlineHelp`) is the ℹ icon variant used next to labels.
-
-### Switches (`KToggle`)
-Boolean toggle with track + handle. Two sizes: small (44×24px track) and medium (60×32px track). Off = gray track (#e0e4ea), On = primary blue track (#0044f4). Handle is always white. Optional check/x symbol indicators inside handle.
+### Tables
+Tables use header cells (sortable with direction states), body cells (text, badge, link, switch, checkbox, actions variants), loading skeletons, and row states (default, hover, selected, disabled, danger). The reference has full token specs.
 
 ### Icons
 

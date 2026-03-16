@@ -76,25 +76,12 @@ The demo showcases interactive examples of buttons, data display, filters, and t
 
 ## Key patterns the skill covers
 
-### Foundations
 - **Color system**: Gray/Blue/Green/Red/Purple/Yellow/Aqua scales (10–100), semantic aliases, CSS variables
 - **Typography**: Inter + JetBrains Mono, token-based heading specs (H1–H5), letter-spacing
-- **Icons**: `@kong/icons` package imports (PascalCase), custom SVGs, sizing rules, name mapping gotchas, no-emoji enforcement
-
-### Components
-- **Buttons**: KButton (primary/secondary/tertiary/danger), KCopy, KDropdown/KDropdownMenu
-- **Form inputs**: KInput, KTextArea, KSelect, KMultiselect, KCheckbox, KRadio, KFileUpload, KLabel, KDateTimePicker — shared `shadow-border` inset pattern, states, help text
-- **Cards**: KCard container with title, body text, header actions
-- **Badges & Alerts**: KBadge (7 appearances), Method Badge (10 HTTP verbs with specific colors), KAlert (5 appearances with predefined icons)
-- **Breadcrumbs**: Global (above H1, trailing `/`) vs Contextual (includes current page, no trailing separator)
-- **Navigation**: KTabs, KPagination, KSegmentedControl, sidebar nav pattern
-- **Display**: KEmptyState (3 hierarchy levels), KSkeleton (7 variants), KCodeBlock, KCatalog/KCatalogItem
-- **Modals & Overlays**: KModal, KPrompt, KPopover, KSlideout, KToast, KTooltip
-- **Switches**: KToggle with track/handle sizing and state tokens
-
-### Patterns
-- **Filter toolbar**: 300px search, dashed/solid pill states, popover layout, truncation rules, filter types, sticky persistence
-- **Tables**: KTable/KTableData/KTableView — header variants, cell types, row states, loading skeletons, sort cycling
+- **Filter toolbar**: 300px search, dashed/solid pill states, popover layout, truncation rules
+- **Tables**: Header variants, cell types, row states, loading skeletons, sort cycling
+- **Icons**: `@kong/icons` package imports (PascalCase), custom SVGs, sizing rules, name mapping gotchas
+- **Badges & Alerts**: Status colors, method badges (GET=green, POST=blue, DELETE=red), appearances
 
 ## Contributing
 
