@@ -1,0 +1,104 @@
+{
+  "expectations": [
+    {
+      "text": "Method badge colors are correct: GET=green (Green 60), POST=blue (Blue 60), DELETE=red (Red 60)",
+      "passed": false,
+      "evidence": "Lines 82-86 show the method styles use CSS variables like 'var(--color-background-success-weakest)' for GET and 'var(--color-background-danger-weakest)' for DELETE. The component does not directly use the Kong color tokens 'Green 60', 'Blue 60', or 'Red 60'. Instead, it uses semantic color variables (success, info, danger) which may not map to the exact Kong color palette specification requested. The expectation asks for specific color token names which are not present in the code."
+    },
+    {
+      "text": "Uses CSS variables (var(--color-*)) not raw hex values for colors",
+      "passed": true,
+      "evidence": "All color values in the component use CSS variables with var(--color-*) syntax. Examples: Line 82 'var(--color-background-success-weakest)', Line 83 'var(--color-text-success)', Line 229 'var(--color-border)', Line 232 'var(--color-background)', Line 246 'var(--color-background-neutral-weakest)', etc. No raw hex values are present."
+    },
+    {
+      "text": "Uses JetBrains Mono font for route paths / code text",
+      "passed": true,
+      "evidence": "Line 338 in the .cell-path CSS class specifies 'font-family: JetBrains Mono, monospace;' for the route path cells."
+    },
+    {
+      "text": "Method badges have fixed ~80px width",
+      "passed": true,
+      "evidence": "Line 351 in the .method-badge CSS class specifies 'width: 80px;'"
+    },
+    {
+      "text": "Table rows have hover state styling",
+      "passed": true,
+      "evidence": "Lines 319-321 define .table-body-row:hover with 'background-color: var(--color-background-neutral-weakest);' and Line 316 includes 'transition: background-color 0.15s ease;' for the hover effect."
+    },
+    {
+      "text": "Sort headers cycle through none→asc→desc states",
+      "passed": true,
+      "evidence": "Lines 106-119 in the toggleSort function implement the cycling logic: it starts with null (none), then cycles to 'asc', then 'desc', then back to null. Line 122-126 shows getSortIcon returns the corresponding icon ('unfold' for none, 'up' for asc, 'down' for desc)."
+    },
+    {
+      "text": "Uses Vue 3 <script setup lang=\"ts\"> SFC pattern",
+      "passed": true,
+      "evidence": "Line 1 shows '<script setup lang=\"ts\">' which is the exact Vue 3 single-file component pattern requested."
+    },
+    {
+      "text": "Imports from @kong/kongponents (not hand-rolled components)",
+      "passed": true,
+      "evidence": "Line 3 imports 'KBadge, KTable from @kong/kongponents'. The component uses KBadge for status badges (line 214) and imports from the Kong components library rather than implementing custom components."
+    },
+    {
+      "text": "Icons imported from @kong/icons with correct PascalCase names",
+      "passed": true,
+      "evidence": "Line 4 imports 'ArrowUpIcon, ArrowDownIcon, UnfoldMoreIcon from @kong/icons'. All three icon names use correct PascalCase convention. They are used throughout the template in lines 139-153 for the sort headers."
+    }
+  ],
+  "summary": {
+    "passed": 8,
+    "failed": 1,
+    "total": 9,
+    "pass_rate": 0.89
+  },
+  "execution_metrics": {},
+  "timing": {
+    "total_duration_seconds": 39.3
+  },
+  "claims": [
+    {
+      "claim": "The component provides default sample route data",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Lines 23-32 and 68-77 (duplicated) define default routes with sample API endpoints including GET, POST, PUT, DELETE, and PATCH methods."
+    },
+    {
+      "claim": "The component uses KTable from kongponents",
+      "type": "process",
+      "verified": false,
+      "evidence": "Line 3 imports KTable from @kong/kongponents, but the component implements a custom HTML table (lines 132-222) instead of using the KTable component. The imported KTable is never used."
+    },
+    {
+      "claim": "Method badge styling properly differentiates HTTP methods",
+      "type": "quality",
+      "verified": true,
+      "evidence": "Lines 82-91 define different background and text colors for GET (success), POST (info), PUT (warning), DELETE (danger), PATCH (info), OPTIONS (neutral), and HEAD (neutral) methods."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [
+      "The specific Kong color token names 'Green 60', 'Blue 60', 'Red 60' are not used; semantic variables are used instead which may not match the exact design specification",
+      "The KTable component is imported but not used - the component implements a custom native HTML table instead"
+    ],
+    "needs_review": [
+      "Color mapping for method badges - verify that the semantic color variables map correctly to the intended Kong color tokens"
+    ],
+    "workarounds": [
+      "Used custom HTML table implementation instead of KTable component from kongponents"
+    ]
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "Method badge colors are correct: GET=green (Green 60), POST=blue (Blue 60), DELETE=red (Red 60)",
+        "reason": "The expectation requests specific Kong color token names ('Green 60', 'Blue 60', 'Red 60') but the implementation uses semantic CSS variables (success, info, danger). This mismatch makes it impossible to verify whether the correct Kong design tokens are being used. Consider either: (1) checking for the literal token names in the code, or (2) verifying that the semantic variables map to the correct underlying colors."
+      },
+      {
+        "assertion": "Imports from @kong/kongponents (not hand-rolled components)",
+        "reason": "The expectation passes because KBadge and KTable are imported, but KTable is imported but never used. The table itself is hand-rolled HTML. Consider checking whether the imported components are actually used in the template, not just whether they're imported."
+      }
+    ],
+    "overall": "The component is well-structured and follows most Vue 3 best practices. The main concern is the mismatch between the expected Kong design tokens and the implemented semantic color variables. The unused KTable import suggests the component may have been created with different constraints than the final expectations."
+  }
+}

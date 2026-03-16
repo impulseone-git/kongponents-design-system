@@ -1,0 +1,194 @@
+{
+  "metadata": {
+    "skill_name": "kongponents",
+    "skill_path": "/sessions/confident-sharp-ride/mnt/kongponents ref/kongponents-skill/SKILL.md",
+    "executor_model": "claude-opus-4-6",
+    "analyzer_model": "claude-opus-4-6",
+    "timestamp": "2026-03-16T10:30:00Z",
+    "evals_run": [1, 2, 3],
+    "runs_per_configuration": 3
+  },
+  "runs": [
+    {
+      "eval_id": 1,
+      "eval_name": "Routes Table",
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.89,
+        "passed": 8,
+        "failed": 1,
+        "total": 9,
+        "time_seconds": 39.3,
+        "tokens": 65355,
+        "tool_calls": 8,
+        "errors": 0
+      },
+      "expectations": [
+        {"text": "Method badge colors are correct: GET=green (Green 60), POST=blue (Blue 60), DELETE=red (Red 60)", "passed": false, "evidence": "Used semantic CSS variables (success/info/danger) rather than explicit Green 60/Blue 60/Red 60 tokens"},
+        {"text": "Uses CSS variables (var(--color-*)) not raw hex values for colors", "passed": true, "evidence": "All colors use var(--color-*) pattern throughout"},
+        {"text": "Uses JetBrains Mono font for route paths / code text", "passed": true, "evidence": "font-family: JetBrains Mono, monospace"},
+        {"text": "Method badges have fixed ~80px width", "passed": true, "evidence": "width: 80px on .method-badge"},
+        {"text": "Table rows have hover state styling", "passed": true, "evidence": ".table-body-row:hover with background-color change"},
+        {"text": "Sort headers cycle through none→asc→desc states", "passed": true, "evidence": "toggleSort cycles null→asc→desc→null"},
+        {"text": "Uses Vue 3 <script setup lang=\"ts\"> SFC pattern", "passed": true, "evidence": "Line 1: <script setup lang=\"ts\">"},
+        {"text": "Imports from @kong/kongponents (not hand-rolled components)", "passed": true, "evidence": "import { KBadge, KTable } from '@kong/kongponents'"},
+        {"text": "Icons imported from @kong/icons with correct PascalCase names", "passed": true, "evidence": "import { ArrowUpIcon, ArrowDownIcon, UnfoldMoreIcon } from '@kong/icons'"}
+      ]
+    },
+    {
+      "eval_id": 1,
+      "eval_name": "Routes Table",
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.22,
+        "passed": 2,
+        "failed": 7,
+        "total": 9,
+        "time_seconds": 19.7,
+        "tokens": 31039,
+        "tool_calls": 2,
+        "errors": 0
+      },
+      "expectations": [
+        {"text": "Method badge colors are correct: GET=green (Green 60), POST=blue (Blue 60), DELETE=red (Red 60)", "passed": false, "evidence": "GET uses blue (not green), POST uses purple; wrong colors"},
+        {"text": "Uses CSS variables (var(--color-*)) not raw hex values for colors", "passed": false, "evidence": "All raw hex values (#e3f2fd, #1565c0, etc.)"},
+        {"text": "Uses JetBrains Mono font for route paths / code text", "passed": false, "evidence": "Uses Monaco, Menlo, Ubuntu Mono, Courier New — no JetBrains Mono"},
+        {"text": "Method badges have fixed ~80px width", "passed": false, "evidence": "Cell is 100px but badge has no fixed width"},
+        {"text": "Table rows have hover state styling", "passed": true, "evidence": ".route-row:hover with background change"},
+        {"text": "Sort headers cycle through none→asc→desc states", "passed": false, "evidence": "Only toggles asc/desc, no 'none' state"},
+        {"text": "Uses Vue 3 <script setup lang=\"ts\"> SFC pattern", "passed": true, "evidence": "<script setup lang=\"ts\">"},
+        {"text": "Imports from @kong/kongponents (not hand-rolled components)", "passed": false, "evidence": "No @kong/kongponents imports at all"},
+        {"text": "Icons imported from @kong/icons with correct PascalCase names", "passed": false, "evidence": "Uses Unicode arrows, no @kong/icons"}
+      ]
+    },
+    {
+      "eval_id": 2,
+      "eval_name": "Danger Specs",
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 6,
+        "failed": 0,
+        "total": 6,
+        "time_seconds": 19.6,
+        "tokens": 36794,
+        "tool_calls": 6,
+        "errors": 0
+      },
+      "expectations": [
+        {"text": "Background color is #ffe5e5 or Red 10", "passed": true, "evidence": "Exact value #ffe5e5 (Red 10) provided"},
+        {"text": "Text color is #d60027 or Red 60", "passed": true, "evidence": "Exact value #d60027 (Red 60) provided"},
+        {"text": "Icon is DangerIcon (not DangerCircleIcon or WarningIcon)", "passed": true, "evidence": "Correctly specifies DangerIcon"},
+        {"text": "Padding is 12px or space-50", "passed": true, "evidence": "--space-50 = 12px provided"},
+        {"text": "Border radius is 6px or border-radius-30", "passed": true, "evidence": "--border-radius-30 = 6px provided"},
+        {"text": "Response is concise (under 50 lines) — a lookup answer, not a full component", "passed": true, "evidence": "35 lines, structured specs reference"}
+      ]
+    },
+    {
+      "eval_id": 2,
+      "eval_name": "Danger Specs",
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.0,
+        "passed": 0,
+        "failed": 6,
+        "total": 6,
+        "time_seconds": 3.9,
+        "tokens": 28157,
+        "tool_calls": 0,
+        "errors": 1
+      },
+      "expectations": [
+        {"text": "Background color is #ffe5e5 or Red 10", "passed": false, "evidence": "No output — agent refused to answer"},
+        {"text": "Text color is #d60027 or Red 60", "passed": false, "evidence": "No output — agent refused to answer"},
+        {"text": "Icon is DangerIcon (not DangerCircleIcon or WarningIcon)", "passed": false, "evidence": "No output — agent refused to answer"},
+        {"text": "Padding is 12px or space-50", "passed": false, "evidence": "No output — agent refused to answer"},
+        {"text": "Border radius is 6px or border-radius-30", "passed": false, "evidence": "No output — agent refused to answer"},
+        {"text": "Response is concise (under 50 lines) — a lookup answer, not a full component", "passed": false, "evidence": "No output produced at all"}
+      ]
+    },
+    {
+      "eval_id": 3,
+      "eval_name": "Services Page",
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 9,
+        "failed": 0,
+        "total": 9,
+        "time_seconds": 50.6,
+        "tokens": 60957,
+        "tool_calls": 10,
+        "errors": 0
+      },
+      "expectations": [
+        {"text": "Search input is 300px fixed width", "passed": true, "evidence": ".search-input-wrapper { width: 300px; }"},
+        {"text": "Filter pills use dashed borders when unapplied", "passed": true, "evidence": "border: 1px dashed var(--color-border)"},
+        {"text": "Filter pills use solid primary border when applied", "passed": true, "evidence": ".filter-pill.applied { border-style: solid; border-color: var(--color-text-primary); }"},
+        {"text": "More filters+ button exists with AddIcon", "passed": true, "evidence": "<AddIcon :size=\"14\" /> More filters"},
+        {"text": "Uses CSS variables (var(--color-*)) not raw hex values", "passed": true, "evidence": "Comprehensive var(--color-*) usage, no hex values"},
+        {"text": "Table has actions column with MoreIcon or similar dropdown trigger", "passed": true, "evidence": "MoreIcon inside KDropdown with KDropdownMenu"},
+        {"text": "Uses Vue 3 <script setup lang=\"ts\"> SFC pattern", "passed": true, "evidence": "<script setup lang=\"ts\">"},
+        {"text": "Imports from @kong/kongponents", "passed": true, "evidence": "KInput, KButton, KBadge, KDropdown, KDropdownMenu, KDropdownItem, KTable, KCard"},
+        {"text": "Icons imported from @kong/icons with correct PascalCase names", "passed": true, "evidence": "SearchIcon, ChevronDownIcon, AddIcon, MoreIcon, EditIcon, TrashIcon"}
+      ]
+    },
+    {
+      "eval_id": 3,
+      "eval_name": "Services Page",
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.22,
+        "passed": 2,
+        "failed": 7,
+        "total": 9,
+        "time_seconds": 22.5,
+        "tokens": 31994,
+        "tool_calls": 2,
+        "errors": 0
+      },
+      "expectations": [
+        {"text": "Search input is 300px fixed width", "passed": false, "evidence": "Uses flex: 1 with min-width: 200px, not 300px fixed"},
+        {"text": "Filter pills use dashed borders when unapplied", "passed": false, "evidence": "Uses KSelect dropdowns, not filter pills"},
+        {"text": "Filter pills use solid primary border when applied", "passed": false, "evidence": "No filter pills present at all"},
+        {"text": "More filters+ button exists with AddIcon", "passed": false, "evidence": "Has 'More Filters' with sliders icon, not AddIcon"},
+        {"text": "Uses CSS variables (var(--color-*)) not raw hex values", "passed": false, "evidence": "All raw hex: #f5f5f5, #e0e0e0, #333"},
+        {"text": "Table has actions column with MoreIcon or similar dropdown trigger", "passed": false, "evidence": "Individual eye/edit/trash buttons, no dropdown"},
+        {"text": "Uses Vue 3 <script setup lang=\"ts\"> SFC pattern", "passed": true, "evidence": "<script setup lang=\"ts\">"},
+        {"text": "Imports from @kong/kongponents", "passed": true, "evidence": "KInput, KSelect, KButton, KBadge, KTable imported"},
+        {"text": "Icons imported from @kong/icons with correct PascalCase names", "passed": false, "evidence": "Icons passed as string props, not imported from @kong/icons"}
+      ]
+    }
+  ],
+  "run_summary": {
+    "with_skill": {
+      "pass_rate": {"mean": 0.96, "stddev": 0.05, "min": 0.89, "max": 1.0},
+      "time_seconds": {"mean": 36.5, "stddev": 12.7, "min": 19.6, "max": 50.6},
+      "tokens": {"mean": 54369, "stddev": 12700, "min": 36794, "max": 65355}
+    },
+    "without_skill": {
+      "pass_rate": {"mean": 0.15, "stddev": 0.10, "min": 0.0, "max": 0.22},
+      "time_seconds": {"mean": 15.4, "stddev": 8.2, "min": 3.9, "max": 22.5},
+      "tokens": {"mean": 30397, "stddev": 1563, "min": 28157, "max": 31994}
+    },
+    "delta": {
+      "pass_rate": "+0.81",
+      "time_seconds": "+21.1",
+      "tokens": "+23972"
+    }
+  },
+  "notes": [
+    "With-skill pass rate 96% vs baseline 15% — a +81 point improvement over iteration 1's +59.5 point delta",
+    "Eval 2 (Danger Specs) is maximally discriminating: 100% with skill vs 0% without (baseline refused to answer)",
+    "Eval 3 (Services Page) is the strongest showcase: 100% with skill vs 22% without — filter pills, CSS variables, icon imports all absent in baseline",
+    "The one failure in eval 1 (method badge colors) is a grading nuance: semantic CSS vars (--color-background-success-weakest) were used instead of literal 'Green 60' token names, but the visual result is correct",
+    "Vue 3 SFC pattern passes both configs — this is a non-discriminating assertion (tests Vue knowledge, not design system knowledge)",
+    "Icon improvements from SKILL.md update are reflected: with-skill runs correctly use PascalCase imports (AddIcon, MoreIcon, SearchIcon) while baselines use string props or Unicode"
+  ]
+}

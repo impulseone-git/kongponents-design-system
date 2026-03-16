@@ -1,0 +1,103 @@
+{
+  "expectations": [
+    {
+      "text": "Method badge colors are correct: GET=green (Green 60), POST=blue (Blue 60), DELETE=red (Red 60)",
+      "passed": false,
+      "evidence": "RoutesTable.vue lines 223-241 show GET method using #e3f2fd/#1565c0 (blue, not green), POST using #f3e5f5/#6a1b9a (purple), and DELETE using #ffebee/#c62828 (red). The colors do not match the specified design tokens (Green 60, Blue 60, Red 60), and raw hex values are used instead of design tokens."
+    },
+    {
+      "text": "Uses CSS variables (var(--color-*)) not raw hex values for colors",
+      "passed": false,
+      "evidence": "RoutesTable.vue style section (lines 132-299) uses raw hex values throughout: #ffffff, #f5f5f5, #e0e0e0, #333333, #eeeeee, #e8f5e9, #2e7d32, #f9f9f9, #555555, #e3f2fd, #1565c0, #f3e5f5, #6a1b9a, etc. No CSS variables with var(--color-*) syntax appear anywhere."
+    },
+    {
+      "text": "Uses JetBrains Mono font for route paths / code text",
+      "passed": false,
+      "evidence": "RoutesTable.vue line 255 specifies font-family as: 'Monaco', 'Menlo', 'Ubuntu Mono', 'Courier New', monospace - JetBrains Mono is not included in the font stack."
+    },
+    {
+      "text": "Method badges have fixed ~80px width",
+      "passed": false,
+      "evidence": "RoutesTable.vue line 200-201 sets .method-cell width to 100px (the cell, not the badge). The .method-badge class (lines 213-221) does not specify a fixed width property at all."
+    },
+    {
+      "text": "Table rows have hover state styling",
+      "passed": true,
+      "evidence": "RoutesTable.vue lines 191-193 implement hover state: '.route-row:hover { background-color: #f9f9f9; }' providing visual feedback on row hover."
+    },
+    {
+      "text": "Sort headers cycle through none→asc→desc states",
+      "passed": false,
+      "evidence": "RoutesTable.vue lines 122-129 show sort() function only toggles between 'asc' and 'desc'. When clicking a new column, it sets sortOrder to 'asc'. There is no 'none' state - columns cannot be unsorted once clicked. The function does not cycle through three states (none→asc→desc)."
+    },
+    {
+      "text": "Uses Vue 3 <script setup lang=\"ts\"> SFC pattern",
+      "passed": true,
+      "evidence": "RoutesTable.vue line 47 shows: '<script setup lang=\"ts\">' confirming the Vue 3 single-file component pattern with TypeScript is used."
+    },
+    {
+      "text": "Imports from @kong/kongponents (not hand-rolled components)",
+      "passed": false,
+      "evidence": "RoutesTable.vue lines 47-48 only import from 'vue': 'import { ref, computed } from \"vue\"'. There are no imports from @kong/kongponents. All UI elements (badges, table, status indicators) are hand-rolled with custom styling."
+    },
+    {
+      "text": "Icons imported from @kong/icons with correct PascalCase names",
+      "passed": false,
+      "evidence": "RoutesTable.vue contains no imports from @kong/icons. Line 14 uses plain Unicode arrows (↑ and ↓) as text content instead of importing icon components: '<span v-if=\"sortBy === column.key\" class=\"sort-indicator\">{{ sortOrder === 'asc' ? '↑' : '↓' }}</span>'"
+    }
+  ],
+  "summary": {
+    "passed": 2,
+    "failed": 7,
+    "total": 9,
+    "pass_rate": 0.22
+  },
+  "execution_metrics": {
+    "total_tokens": 31039,
+    "duration_ms": 19653,
+    "total_duration_seconds": 19.7
+  },
+  "claims": [
+    {
+      "claim": "The component is a fully functional Vue 3 SFC with TypeScript",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Component uses <script setup lang=\"ts\"> pattern, defines TypeScript interfaces (Route, Column), and includes reactive state with computed properties."
+    },
+    {
+      "claim": "The component provides sorting functionality",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Lines 122-129 implement sort() function that handles column sorting. Lines 90-120 compute sortedRoutes with sorting logic."
+    },
+    {
+      "claim": "The design matches Kong's design system specifications",
+      "type": "quality",
+      "verified": false,
+      "evidence": "The component uses generic Material Design colors and fonts instead of Kong design tokens. No @kong/kongponents or @kong/icons imports. Color palette, typography, and component patterns do not follow Kong's documented design system."
+    },
+    {
+      "claim": "The component uses Kong UI library components",
+      "type": "factual",
+      "verified": false,
+      "evidence": "Component is entirely hand-rolled with custom HTML/CSS. No Kong components (badges, tables, etc.) are imported or used."
+    }
+  ],
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "reason": "Expectation 1 conflates color correctness with token usage. GET should be green per the spec, but the implementation is blue. This is actually two failures: wrong color AND no tokens. Consider splitting into separate assertions."
+      },
+      {
+        "reason": "Expectation 4 (fixed ~80px width) is vague. Does this measure the badge padding/content or the full cell width? The current output has a 100px cell but no badge-level width constraint. Clarify what 'width' means (badge element vs. cell)."
+      },
+      {
+        "reason": "Expectation 6 (none→asc→desc cycle) is not what the current implementation does - it only toggles asc/desc. This expectation may be correct but the output doesn't meet it. Consider whether the original spec intended a three-state cycle or if this was a misunderstanding."
+      },
+      {
+        "reason": "The evals don't check whether default data is appropriate or if the component accepts props correctly. The component defines a routes prop but also has defaultRoutes. Consider whether the prop fallback behavior is tested."
+      }
+    ],
+    "overall": "Multiple core expectations fail. The component is functional Vue code but deviates significantly from Kong design system requirements (no design tokens, no Kong components, no Kong icons, wrong colors, wrong fonts). The eval assertions are well-defined but the implementation does not meet them."
+  }
+}

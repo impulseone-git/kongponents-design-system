@@ -1,0 +1,23 @@
+{
+  "skill_name": "kongponents",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Create a Vue component that shows a list of API routes with method badges (GET, POST, DELETE), route paths, and status badges. It should look like a proper Konnect table with sortable columns and hover states.",
+      "expected_output": "A Vue 3 SFC with KTable-like markup, correct method badge colors (GET=green, POST=blue, DELETE=red), status badges, sortable header cells, hover row states, all using design tokens and @kong/kongponents imports.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "What are the exact colors and sizing specs for the danger alert? I need the background hex, text color, icon, padding, and border radius.",
+      "expected_output": "Direct answer citing: bg #ffe5e5 (Red 10), text #d60027 (Red 60), icon: danger, padding 12px (space-50), border-radius 6px (border-radius-30), gap 6px, min-height 44px. No code generation needed.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "Build a Services list page with a filter toolbar that has 2 quick filters (Status and Protocol), a search bar, and a More filters button. Include a table below showing service name, protocol badge, status badge, and an actions column. Use Kongponents.",
+      "expected_output": "A complete Vue 3 SFC page view with: filter toolbar (300px search, divider, 2 unapplied pills with dashed borders, More filters+ button), KTable-like data table with sample data, method/status badges, actions dropdown, all following design token specs.",
+      "files": []
+    }
+  ]
+}

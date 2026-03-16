@@ -1,0 +1,16 @@
+{
+  "eval_id": 3,
+  "eval_name": "services-page",
+  "prompt": "Build a Services list page with a filter toolbar that has 2 quick filters (Status and Protocol), a search bar, and a More filters button. Include a table below showing service name, protocol badge, status badge, and an actions column. Use Kongponents.",
+  "assertions": [
+    {"text": "Search input is 300px fixed width", "type": "content"},
+    {"text": "Filter pills use dashed borders when unapplied", "type": "content"},
+    {"text": "Filter pills use solid primary border when applied", "type": "content"},
+    {"text": "More filters+ button exists with AddIcon", "type": "content"},
+    {"text": "Uses CSS variables (var(--color-*)) not raw hex values", "type": "content"},
+    {"text": "Table has actions column with MoreIcon or similar dropdown trigger", "type": "content"},
+    {"text": "Uses Vue 3 <script setup lang=\"ts\"> SFC pattern", "type": "structure"},
+    {"text": "Imports from @kong/kongponents", "type": "structure"},
+    {"text": "Icons imported from @kong/icons with correct PascalCase names", "type": "content"}
+  ]
+}

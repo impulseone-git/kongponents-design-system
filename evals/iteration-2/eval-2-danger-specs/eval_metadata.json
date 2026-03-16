@@ -1,0 +1,13 @@
+{
+  "eval_id": 2,
+  "eval_name": "danger-specs",
+  "prompt": "What are the exact colors and sizing specs for the danger alert? I need the background hex, text color, icon, padding, and border radius.",
+  "assertions": [
+    {"text": "Background color is #ffe5e5 or Red 10", "type": "content"},
+    {"text": "Text color is #d60027 or Red 60", "type": "content"},
+    {"text": "Icon is DangerIcon (not DangerCircleIcon or WarningIcon)", "type": "content"},
+    {"text": "Padding is 12px or space-50", "type": "content"},
+    {"text": "Border radius is 6px or border-radius-30", "type": "content"},
+    {"text": "Response is concise (under 50 lines) — a lookup answer, not a full component", "type": "format"}
+  ]
+}

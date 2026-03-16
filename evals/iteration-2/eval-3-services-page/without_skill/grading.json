@@ -1,0 +1,100 @@
+{
+  "expectations": [
+    {
+      "text": "Search input is 300px fixed width",
+      "passed": false,
+      "evidence": "Lines 404-411 show search-wrapper with 'flex: 1; min-width: 200px;' and search-input with 'width: 100%;'. This is a flexible width layout, not a fixed 300px width."
+    },
+    {
+      "text": "Filter pills use dashed borders when unapplied",
+      "passed": false,
+      "evidence": "Lines 19-34 show KSelect components for filtering. No filter pills are present in the component. Filter controls use select dropdowns instead of pill-based filtering."
+    },
+    {
+      "text": "Filter pills use solid primary border when applied",
+      "passed": false,
+      "evidence": "No filter pills exist in the component. Lines 19-34 use KSelect components, not pills. No CSS for pill borders (dashed or solid) is present in the styles section."
+    },
+    {
+      "text": "More filters+ button exists with AddIcon",
+      "passed": false,
+      "evidence": "Lines 37-45 show a button with text 'More Filters' (not 'More Filters+') and icon='sliders' (not AddIcon). The icon is a sliders icon, not an add icon."
+    },
+    {
+      "text": "Uses CSS variables (var(--color-*)) not raw hex values",
+      "passed": false,
+      "evidence": "Multiple raw hex values found: line 386 '#f5f5f5', line 430 '#e0e0e0', line 461 '#333', line 483 '#333'. No CSS variables (var(--color-*)) are used anywhere in the styles section."
+    },
+    {
+      "text": "Table has actions column with MoreIcon or similar dropdown trigger",
+      "passed": false,
+      "evidence": "Lines 125-149 show an actions column with three individual buttons (eye, edit, trash icons). No MoreIcon or dropdown trigger is present. Instead of a dropdown menu, individual action buttons are displayed."
+    },
+    {
+      "text": "Uses Vue 3 <script setup lang=\"ts\"> SFC pattern",
+      "passed": true,
+      "evidence": "Line 155 shows '<script setup lang=\"ts\">' which is the correct Vue 3 Single File Component pattern with TypeScript."
+    },
+    {
+      "text": "Imports from @kong/kongponents",
+      "passed": true,
+      "evidence": "Line 157 shows 'import { KInput, KSelect, KButton, KBadge, KTable } from '@kong/kongponents'' which correctly imports multiple components from the @kong/kongponents library."
+    },
+    {
+      "text": "Icons imported from @kong/icons with correct PascalCase names",
+      "passed": false,
+      "evidence": "No imports from @kong/icons are present in the script section. Icons are passed as string props (e.g., icon='sliders', icon='eye', icon='edit', icon='trash' on lines 40, 130, 137, 144) rather than imported as PascalCase components."
+    }
+  ],
+  "summary": {
+    "passed": 2,
+    "failed": 7,
+    "total": 9,
+    "pass_rate": 0.22
+  },
+  "execution_metrics": {
+    "total_tokens": 31994,
+    "duration_ms": 22493,
+    "duration_seconds": 22.5
+  },
+  "claims": [
+    {
+      "claim": "Component implements filter-based service listing",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Component includes search input, status/protocol filters, expanded 'More Filters' section with version/port/region filters, and computed filtering logic (lines 295-330)"
+    },
+    {
+      "claim": "Component includes table with service data",
+      "type": "factual",
+      "verified": true,
+      "evidence": "KTable component on lines 97-150 with headers for name, protocol, status, and actions; includes 8 mock services (lines 211-292)"
+    },
+    {
+      "claim": "Component uses Kongponents for UI elements",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Multiple @kong/kongponents imports (KInput, KSelect, KButton, KBadge, KTable) on line 157, used throughout template"
+    },
+    {
+      "claim": "The output follows all specified design requirements",
+      "type": "quality",
+      "verified": false,
+      "evidence": "Only 2 of 9 expectations pass. The implementation deviates from requirements in search width, filter pills, button styling, CSS variables, table actions pattern, and icon imports."
+    }
+  ],
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "reason": "The expectations specify detailed UI/UX patterns (filter pills, fixed widths, CSS variables) but the output provides a functional but different design. The eval assertions are specific and good, but they may not align with the actual design intent. Consider whether these design specifications are firm requirements or preferences."
+      },
+      {
+        "reason": "Expectation 4 (More filters button) mentions 'More Filters+' but the output says 'More Filters' - this is a minor naming difference. The assertion could be more robust by checking for the presence of a button with expandable more filters functionality rather than exact text matching."
+      },
+      {
+        "reason": "No assertion checks whether the table actions are appropriately functional (e.g., handlers exist), though the component does include view/edit/delete handlers. Consider whether single-action buttons vs. a dropdown menu is an important distinction to test."
+      }
+    ],
+    "overall": "Assertions are well-defined and specific, but the output shows a different implementation approach than expected. The component is functional and uses the right libraries, but diverges on design patterns (filter pills vs. selects, individual action buttons vs. dropdown, raw colors vs. CSS variables)."
+  }
+}

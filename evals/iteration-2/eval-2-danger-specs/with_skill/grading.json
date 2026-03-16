@@ -1,0 +1,63 @@
+{
+  "expectations": [
+    {
+      "text": "Background color is #ffe5e5 or Red 10",
+      "passed": true,
+      "evidence": "Output line 7: 'Background | `color-background-danger-weakest` | `#ffe5e5` (Red 10)' — exact color value provided."
+    },
+    {
+      "text": "Text color is #d60027 or Red 60",
+      "passed": true,
+      "evidence": "Output line 8: 'Text Color | `color-text-danger` | `#d60027` (Red 60)' — exact color value provided."
+    },
+    {
+      "text": "Icon is DangerIcon (not DangerCircleIcon or WarningIcon)",
+      "passed": true,
+      "evidence": "Output line 13: 'Icon Name: `danger`' and line 32 explicitly states 'Icon: `DangerIcon` at 20×20px'. Correct icon specified."
+    },
+    {
+      "text": "Padding is 12px or space-50",
+      "passed": true,
+      "evidence": "Output line 21: 'Padding (all sides) | `--space-50` | 12px' — both token and pixel value provided."
+    },
+    {
+      "text": "Border radius is 6px or border-radius-30",
+      "passed": true,
+      "evidence": "Output line 22: 'Border Radius | `--border-radius-30` | 6px' — both token and pixel value provided."
+    },
+    {
+      "text": "Response is concise (under 50 lines) — a lookup answer, not a full component",
+      "passed": true,
+      "evidence": "Output file is 35 lines total. Formatted as a structured specs reference (tables and summary) rather than component code. Appropriate concise lookup answer."
+    }
+  ],
+  "summary": {
+    "passed": 6,
+    "failed": 0,
+    "total": 6,
+    "pass_rate": 1.0
+  },
+  "execution_metrics": {
+    "total_tokens": 36794,
+    "duration_ms": 19646,
+    "duration_seconds": 19.6
+  },
+  "claims": [
+    {
+      "claim": "All design specs are correctly mapped to tokens",
+      "type": "quality",
+      "verified": true,
+      "evidence": "Each specification maps both design tokens (--space-50, --border-radius-30) and pixel/hex values, demonstrating token-aware documentation."
+    },
+    {
+      "claim": "Icon explicitly excludes similar alternatives",
+      "type": "quality",
+      "verified": true,
+      "evidence": "The expectation tests against common confusion candidates (DangerCircleIcon, WarningIcon) and the output correctly specifies DangerIcon."
+    }
+  ],
+  "eval_feedback": {
+    "suggestions": [],
+    "overall": "All expectations met with clear, specific evidence. Output correctly answers the eval prompt with accurate specs, proper token references, and appropriate conciseness. No improvements needed for these assertions."
+  }
+}
