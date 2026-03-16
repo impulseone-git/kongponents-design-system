@@ -1556,23 +1556,30 @@ Single component (no size or appearance variants). Overflow clips content.
 ```
 ┌──────────────────────┐
 │  Overview            │  ← Top-level item
-│  ─────────────────── │
-│  CONNECTIVITY        │  ← Section label (uppercase)
+│                      │
+│  CONNECTIVITY      ▾ │  ← Section label (uppercase) with collapse/expand chevron
 │    API Gateway       │  ← Section item (selected = green text)
 │    Event Gateway     │
 │    AI Gateway        │
 │    Service Mesh      │
-│  APPLICATIONS        │
+│                      │
+│  APPLICATIONS      ▾ │  ← Section label (uppercase) with collapse/expand chevron
 │    Catalog           │
 │    Dev Portal        │
+│    Metering & Billing│  ← Can be selected; expands subnav (Metering, Product Catalog, Billing, Settings)
+│    Observability     │
+│    Identity          │
 │  ─────────────────── │
-│  Identity            │
 │  Organization        │
 │  ─────────────────── │
 │  [Acme Inc. ▾]       │  ← Org selector
 │  [US (North America)]│  ← Region selector
 └──────────────────────┘
 ```
+
+**Section labels** use a flex row with the text on the left and a small chevron-down SVG (16×16, opacity 0.6) on the right for collapse/expand.
+
+**Selected nav group**: When a nav item is selected, it gets a highlighted background (`nav-color-background-selected`) with an inset border, and its label turns green (`nav-color-text-selected`). If the item has sub-pages, a subnav panel expands below it with a top border divider. The active subnav item has a 4px green left border indicator.
 
 **Design Tokens:**
 
@@ -1591,8 +1598,10 @@ Single component (no size or appearance variants). Overflow clips content.
 | Item padding | 12px top/bottom, 16px left/right |
 | Icon size | 20×20px |
 | Label font | 14px Inter SemiBold |
-| Section label | 12px Inter Medium, uppercase |
+| Section label | 12px Inter Medium, uppercase, with chevron-down icon (16×16, opacity 0.6) |
+| Section chevron path | `M6.175 7.15833L10 10.975L13.825 7.15833L15 8.33333L10 13.3333L5 8.33333L6.175 7.15833Z` (viewBox 0 0 20 20) |
 | Active background | `inset 0 0 0 1px rgba(255,255,255,0.12)` |
+| Subnav active indicator | 4px solid left border in `nav-color-text-selected` (#00fabe) |
 | Divider | `rgba(255,255,255,0.1)` horizontal line |
 
 ---
